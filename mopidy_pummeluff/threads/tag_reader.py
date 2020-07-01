@@ -38,7 +38,7 @@ class TagReader(Thread):
     daemon = True
     latest = None
 
-    def __init__(self, core, stop_event):
+    def __init__(self, core, stop_event, config):
         '''
         Class constructor.
 
@@ -48,7 +48,11 @@ class TagReader(Thread):
         super().__init__()
         self.core       = core
         self.stop_event = stop_event
-        self.rfid       = RFID()
+        self.rfid = RFID(bus=config['pummeluff']['rfid_bus'],
+                         device=config['pummeluff']['rfid_dev'],
+                         pin_irq=config['pummeluff']['rfid_pin_irq'],
+                         pin_rst=config['pummeluff']['rfid_pin_rst'],
+                         pin_mode=GPIO.BCM)
 
     def run(self):
         '''

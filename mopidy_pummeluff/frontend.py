@@ -28,14 +28,19 @@ class PummeluffFrontend(pykka.ThreadingActor, mopidy_core.CoreListener):
         self.config       = config
         self.core         = core
         self.stop_event   = Event()
-        self.gpio_handler = GPIOHandler(core=core, config=config, stop_event=self.stop_event)
-        self.tag_reader   = TagReader(core=core, stop_event=self.stop_event)
+        self.en_gpio     = config['pummeluff']['en_gpio']
+        if self.en_gpio:
+            self.gpio_handler = GPIOHandler(core=core, config=config, stop_event=self.stop_event)
+
+        self.tag_reader   = TagReader(core=core, stop_event=self.stop_event, config=config)
 
     def on_start(self):
         '''
         Start GPIO handler & tag reader threads.
         '''
-        self.gpio_handler.start()
+        if self.en_gpio:
+            self.gpio_handler.start()
+
         self.tag_reader.start()
 
     def on_stop(self):

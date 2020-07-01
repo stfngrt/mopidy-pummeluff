@@ -62,6 +62,11 @@ class Extension(mopidy.ext.Extension):
         for pin in ('led', 'shutdown', 'play_pause', 'stop', 'previous_track', 'next_track'):
             schema[f'{pin}_pin'] = mopidy.config.Integer()
 
+        schema['en_gpio'] = config.Boolean()
+        schema['rfid_bus'] = config.Integer()
+        schema['rfid_dev'] = config.Integer()
+        schema['rfid_pin_rst'] = config.Integer()
+        schema['rfid_pin_irq'] = config.Integer()
         return schema
 
     def setup(self, registry):

@@ -14,7 +14,7 @@ with open('requirements-dev.txt') as f:
 setup(
     name='Mopidy-Pummeluff',
     use_scm_version=True,
-    url='https://github.com/confirm/mopidy-pummeluff',
+    url='https://github.com/stfngrt/mopidy-pummeluff',
     license='MIT',
     author='confirm IT solutions',
     author_email='mopidy-pummeluff@confirm.ch',

@@ -21,7 +21,7 @@ class RegistryDict(dict):
     Class which can be used to retreive and write RFID tags to the registry.
     '''
 
-    registry_path = '/var/lib/mopidy/pummeluff/tags.json'
+    registry_path = '/home/pi/tags.json'
 
     def __init__(self):
         '''
